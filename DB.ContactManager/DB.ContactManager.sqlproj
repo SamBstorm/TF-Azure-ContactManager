@@ -75,5 +75,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.ContactManager.publish.xml" />
+    <None Include="DB.ContactManager.LocalDb.publish.xml" />
   </ItemGroup>
 </Project>
