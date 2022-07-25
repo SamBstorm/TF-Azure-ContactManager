@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ContactManager</title>
+    <title>ContactManager - Register</title>
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
     <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
@@ -42,7 +42,27 @@
         </ul>
     </nav>
     <div class="container">
-        <h1>Les coockies c'est la vie!</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="lastname">Nom : </label>
+                <input class="form-control" id="lastname" type="text"></div>
+            <div class="form-group">
+                <label for="firstname">Prénom : </label>
+                <input class="form-control" id="firstname" type="text"></div>
+            <div class="form-group">
+                <label for="email">Email : </label>
+                <input class="form-control" id="email" type="email"></div>
+            <div class="form-group">
+                <label for="password">Mot de passe : </label>
+                <input class="form-control" id="password" type="password"></div>
+            <div class="form-group">
+                <label for="scnd_password">Confirmer le mot de passe : </label>
+                <input class="form-control" id="scnd_password" type="password"></div>
+            <div class="btn-group">
+                <input class="btn btn-primary" type="submit" value="S'enregistrer">
+                <input class="btn btn-secondary" type="reset" value="Annuler">
+            </div>
+        </form>
     </div>
 </body>
 </html>

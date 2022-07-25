@@ -16,7 +16,7 @@ namespace ASP.ContactManager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login([FromBody] object form)
+        public IActionResult Login(IFormCollection form)
         {
             return View();
         }
@@ -28,7 +28,7 @@ namespace ASP.ContactManager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register([FromBody] object form)
+        public IActionResult Register(IFormCollection form)
         {
             return View();
         }

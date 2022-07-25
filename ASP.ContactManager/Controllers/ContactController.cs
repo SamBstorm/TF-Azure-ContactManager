@@ -14,7 +14,7 @@ namespace ASP.ContactManager.Controllers
         // GET: ContactController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return RedirectToAction("Index");
         }
 
         // GET: ContactController/Create
@@ -41,7 +41,7 @@ namespace ASP.ContactManager.Controllers
         // GET: ContactController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return RedirectToAction("Index");
         }
 
         // POST: ContactController/Edit/5
@@ -62,7 +62,7 @@ namespace ASP.ContactManager.Controllers
         // GET: ContactController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return RedirectToAction("Index");
         }
 
         // POST: ContactController/Delete/5
