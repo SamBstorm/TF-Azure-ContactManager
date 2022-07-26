@@ -1,5 +1,25 @@
 @{
     Layout = "";
+    string privacy_msg = "Les engagements présents ont pour objet de vous indiquer la nature des données personnelles que nous collectons dans le cadre de votre utilisation de nos services et de vous expliquer comment et à quelles fins nous utilisons ces données.";
+    void CreateNav(Dictionary<string,string> links)
+    {
+    <nav><ul class="nav justify-content-center">
+            @foreach (KeyValuePair<string,string> link in links)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@link.Key">
+                        <div>@link.Value</div>
+                    </a>
+                </li>
+            }
+            </ul></nav>
+    }
+
+    Dictionary<string, string> menu = new Dictionary<string, string>();
+    menu.Add(@"\","Home");
+    menu.Add(@"\Home\Privacy","Privacy");
+    menu.Add(@"\Auth\Login","Login");
+    menu.Add(@"\Auth\Register","Register");
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -7,12 +27,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ContactManager</title>
+    <title>@ViewBag.MainTitle - @ViewData["Title"]</title>
     <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
     <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <nav>
+    @*<nav>
         <ul class="nav justify-content-center">
             <li class="nav-item">
                 <a class="nav-link" href="/">
@@ -40,9 +60,11 @@
                 </a>
             </li>
         </ul>
-    </nav>
+    </nav>*@
+    @{CreateNav(menu);}
     <div class="container">
         <h1>Les coockies c'est la vie!</h1>
+        <p>@privacy_msg</p>
     </div>
 </body>
 </html>

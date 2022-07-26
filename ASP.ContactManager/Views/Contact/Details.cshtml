@@ -1,3 +1,4 @@
+﻿@model ContactDetails
 @{
     Layout = "";
 }
@@ -41,5 +42,22 @@
             </li>
         </ul>
     </nav>
+    <div class="container">
+        <h3>@Model.LastName.ToUpper(), @Model.FirstName @((Model.CategoryId==1)?"💼":"")</h3>
+        <dl>
+            @if(Model.Phone !=null){
+                <dt>Téléphone :</dt>
+                <dd><a href="tel:@Model.Phone">@Model.Phone</a></dd>
+            }
+            @if(Model.Email !=null){
+            <dt>Courriel : </dt>
+            <dd><a href="mailto:@Model.Email">@Model.Email</a></dd>
+            }
+            @if(Model.BirthDate !=null){
+                <dt>Date Anniversaire :</dt>
+                <dd>@Model.BirthDate?.ToString("dd-MM-yyyy")<br>(anniversaire dans @Model.DaysUntilBirthDay jours)</dd>
+            }
+        </dl>
+    </div>
 </body>
 </html>

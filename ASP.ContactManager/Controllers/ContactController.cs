@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ASP.ContactManager.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP.ContactManager.Controllers
@@ -14,7 +15,8 @@ namespace ASP.ContactManager.Controllers
         // GET: ContactController/Details/5
         public ActionResult Details(int id)
         {
-            return RedirectToAction("Index");
+            ContactDetails model = new ContactDetails("Legrain","Samuel",1,"samuel.legrain@bstorm.be", "+3280033800",new DateTime(1987,9,27));
+            return View(model);
         }
 
         // GET: ContactController/Create
