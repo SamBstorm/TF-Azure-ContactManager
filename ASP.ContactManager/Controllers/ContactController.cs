@@ -15,7 +15,8 @@ namespace ASP.ContactManager.Controllers
         // GET: ContactController/Details/5
         public ActionResult Details(int id)
         {
-            ContactDetails model = new ContactDetails("Legrain","Samuel",1,"samuel.legrain@bstorm.be", "+3280033800",new DateTime(1987,9,27));
+            //ContactDetails model = new ContactDetails("Legrain","Samuel",1,"samuel.legrain@bstorm.be", "+3280033800",new DateTime(1987,9,27));
+            ContactDetails model = new ContactDetails("Legrain", "Samuel", 1,null, "+3280033800");
             return View(model);
         }
 
