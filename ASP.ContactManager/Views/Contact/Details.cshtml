@@ -16,27 +16,27 @@
     <nav>
         <ul class="nav justify-content-center">
             <li class="nav-item">
-                <a class="nav-link" href="/">
+                <a class="nav-link" asp-action="Index" asp-controller="Home">
                     <div>Home</div>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/Home/Privacy">
+                <a class="nav-link" asp-action="Privacy" asp-controller="Home">
                     <div>Privacy</div>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/Auth/Login">
+                <a class="nav-link" asp-action="Login" asp-controller="Auth">
                     <div>Login</div>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/Auth/Register">
+                <a class="nav-link" asp-action="Register" asp-controller="Auth">
                     <div>Register</div>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/Contact/Index">
+                <a class="nav-link" asp-action="Index" asp-controller="Contact">
                     <div>Contact list</div>
                 </a>
             </li>
@@ -46,16 +46,16 @@
         <h3>@Model.LastName.ToUpper(), @Model.FirstName @((Model.CategoryId==1)?"💼":"")</h3>
         <dl>
             @if(Model.Phone !=null){
-                <dt>Téléphone :</dt>
-                <dd><a href="tel:@Model.Phone">@Model.Phone</a></dd>
+                <dt>@Html.DisplayNameFor(model=>model.Phone)</dt>
+                <dd><a href="tel:@Model.Phone">@Html.DisplayFor(model=>model.Phone)</a></dd>
             }
             @if(Model.Email !=null){
-            <dt>Courriel : </dt>
-            <dd><a href="mailto:@Model.Email">@Model.Email</a></dd>
+            <dt>@Html.DisplayNameFor(model=>model.Email)</dt>
+            <dd><a href="mailto:@Model.Email">@Html.DisplayFor(model=>model.Email)</a></dd>
             }
             @if(Model.BirthDate !=null){
-                <dt>Date Anniversaire :</dt>
-                <dd>@Model.BirthDate?.ToString("dd-MM-yyyy")<br>(anniversaire dans @Model.DaysUntilBirthDay jours)</dd>
+                <dt>@Html.DisplayNameFor(model=>model.BirthDate)</dt>
+                <dd>@Html.DisplayFor(model=>model.BirthDate)<br>(anniversaire dans @Model.DaysUntilBirthDay jours)</dd>
             }
         </dl>
     </div>

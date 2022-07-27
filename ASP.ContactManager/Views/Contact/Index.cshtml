@@ -42,7 +42,8 @@
         </ul>
     </nav>
     <div class="container">
-        <a class="link" href="/Contact/Create">Ajouter nouveau contact</a>
+        @*<a class="link" href="/Contact/Create">Ajouter nouveau contact</a>*@
+        @Html.ActionLink("Ajouter nouveau contact","Create","Contact", htmlAttributes: new {@class="btn btn-primary", id="btnNouveauContact", target="_blank"})
     </div>
 </body>
 </html>

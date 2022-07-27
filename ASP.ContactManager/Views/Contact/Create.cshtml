@@ -2,6 +2,7 @@
 @{
     Layout = "";
 }
+@model ContactCreateForm
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +44,7 @@
         </ul>
     </nav>
     <div class="container">
-        @if(!ViewContext.ModelState.IsValid){
+       @* @if(!ViewContext.ModelState.IsValid){
             <div class="alert alert-danger container">
                 <h4>Erreurs :</h4>
                 <dl>
@@ -62,29 +63,42 @@
                 }
                 </dl>
             </div>
+        }*@
+        @if (!ViewContext.ModelState.IsValid)
+        {
+            <div class="alert alert-danger container" asp-validation-summary="ModelOnly">Erreurs : @ViewContext.ModelState.ErrorCount</div>
         }
         <form method="post">
             <div class="form-group">
-                <label for="lastname">Nom : </label>
-                <input class="form-control" id="lastname" name="lastname" type="text"></div>
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control">
+                <span asp-validation-for="LastName" class="text-warning"></span>
+            </div>
             <div class="form-group">
-                <label for="firstname">Prénom : </label>
-                <input class="form-control" id="firstname" name="firstname" type="text"></div>
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control">
+                <span asp-validation-for="FirstName" class="text-warning"></span>
+            </div>
             <div class="form-group">
-                <label for="email">Email : </label>
-                <input class="form-control" id="email" name="email" type="email"></div>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control">
+                <span asp-validation-for="Email" class="text-warning"></span>
+            </div>
             <div class="form-group">
-                <label for="phone">Téléphone : </label>
-                <input class="form-control" id="phone" name="phone" type="tel"></div>
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control">
+                <span asp-validation-for="Phone" class="text-warning"></span>
+            </div>
             <div class="form-group">
-                <label for="birthdate">Date de naissance : </label>
-                <input class="form-control" id="birthdate" name="birthdate" type="date"></div>
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control">
+                <span asp-validation-for="BirthDate" class="text-warning"></span>
+            </div>
             <div class="form-group">
-                <label for="category">Catégorie : </label>
-                <select class="form-control" id="category" name="categoryId">
-                    <option value="1">Personnel</option>
-                    <option value="2">Professionel</option>
-                </select>
+                <label asp-for="CategoryId" class="control-label"></label>
+                @Html.DropDownListFor(model=>model.CategoryId,Model.Categories.Select(kvp => new SelectListItem{Text = kvp.Key, Value=kvp.Value.ToString()}), htmlAttributes: new{@class="form-control"})
+                <select class="form-control" asp-for="CategoryId" asp-items="Model.Categories.Select(kvp => new SelectListItem{Text = kvp.Key, Value=kvp.Value.ToString()})"></select>
+                <span asp-validation-for="CategoryId" class="text-warning"></span>
                 </div>
             <div class="btn-group">
                 <input class="btn btn-primary" type="submit" value="Ajouter">

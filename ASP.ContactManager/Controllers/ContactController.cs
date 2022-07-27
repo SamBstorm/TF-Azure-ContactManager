@@ -16,15 +16,20 @@ namespace ASP.ContactManager.Controllers
         // GET: ContactController/Details/5
         public ActionResult Details(int id)
         {
-            //ContactDetails model = new ContactDetails("Legrain","Samuel",1,"samuel.legrain@bstorm.be", "+3280033800",new DateTime(1987,9,27));
-            ContactDetails model = new ContactDetails("Legrain", "Samuel", 1,null, "+3280033800");
+            ContactDetails model = new ContactDetails("Legrain","Samuel",1,"samuel.legrain@bstorm.be", "+3280033800",new DateTime(1987,9,27));
+            //ContactDetails model = new ContactDetails("Legrain", "Samuel", 1,null, "+3280033800");
             return View(model);
         }
 
         // GET: ContactController/Create
         public ActionResult Create()
         {
-            return View();
+            ContactCreateForm model = new ContactCreateForm();
+            Dictionary<string,int> categories = new Dictionary<string, int>();
+            categories.Add("Personnel",0);
+            categories.Add("Professionel",1);
+            model.Categories = categories;
+            return View(model);
         }
 
         // POST: ContactController/Create
@@ -40,7 +45,11 @@ namespace ASP.ContactManager.Controllers
             }
             catch
             {
-                return View();
+                Dictionary<string, int> categories = new Dictionary<string, int>();
+                categories.Add("Personnel", 0);
+                categories.Add("Professionel", 1);
+                form.Categories = categories;
+                return View(form);
             }
         }
 
