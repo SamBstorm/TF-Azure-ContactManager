@@ -1,6 +1,7 @@
 ﻿using ASP.ContactManager.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace ASP.ContactManager.Controllers
 {
@@ -29,16 +30,24 @@ namespace ASP.ContactManager.Controllers
         // POST: ContactController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ContactCreateForm form)
         {
             try
             {
+                ValidateContactCreateForm(form, ModelState);
+                if (!ModelState.IsValid) throw new Exception("ModelState invalide");
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
                 return View();
             }
+        }
+
+        private void ValidateContactCreateForm(ContactCreateForm form, ModelStateDictionary modelState)
+        {
+            if (string.IsNullOrWhiteSpace(form.Phone) && string.IsNullOrWhiteSpace(form.Email))
+                modelState.AddModelError("Général","Au moins un des 2 champs doit être rempli : e-amil ou téléphone.");
         }
 
         // GET: ContactController/Edit/5
