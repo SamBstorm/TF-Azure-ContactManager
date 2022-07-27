@@ -47,7 +47,7 @@ namespace ASP.ContactManager.Controllers
         private void ValidateContactCreateForm(ContactCreateForm form, ModelStateDictionary modelState)
         {
             if (string.IsNullOrWhiteSpace(form.Phone) && string.IsNullOrWhiteSpace(form.Email))
-                modelState.AddModelError("Général","Au moins un des 2 champs doit être rempli : e-amil ou téléphone.");
+                modelState.AddModelError("Général","Au moins un des 2 champs doit être rempli : e-mail ou téléphone.");
         }
 
         // GET: ContactController/Edit/5

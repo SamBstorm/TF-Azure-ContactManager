@@ -13,7 +13,7 @@ namespace ASP.ContactManager.Models
         [EmailAddress(ErrorMessage = "L'adresse e-mail ne correspond pas à la norme...")]
         [MaxLength(384, ErrorMessage = "Maximum 384 caractères.")]
         public string? Email { get; set; }
-        [RegularExpression(@"^(?=\+{0,1}[0-9]).{5,20}$", ErrorMessage = "L'adresse e-mail ne correspond pas à la norme...")]
+        [RegularExpression(@"^(?=\+{0,1}[0-9]).{5,20}$", ErrorMessage = "Le numéro de téléphone ne correspond pas à la norme...")]
         [MaxLength(20, ErrorMessage = "Maximum 20 caractères.")]
         public string? Phone { get; set; }
         public DateTime? BirthDate { get; set; }
