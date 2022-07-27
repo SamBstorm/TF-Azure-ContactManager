@@ -46,16 +46,17 @@
         <div class="alert alert-danger">Il y a des erreurs...
             <dl>
         @foreach(KeyValuePair<string,ModelStateEntry> kvp in ViewContext.ModelState){
-            <dt>@kvp.Key :</dt>
-            <dd>
-                <ul>
-                    @if(kvp.Value.Errors.Count()>0){
-                        foreach(ModelError error in kvp.Value.Errors){
+            if(kvp.Value.Errors.Count()>0){
+                <dt>@kvp.Key :</dt>
+                <dd>
+                    <ul>
+                        @foreach(ModelError error in kvp.Value.Errors){
                             <li> @error.ErrorMessage</li>
                         }
-                    }
-                </ul>
-            </dd>
+                    
+                    </ul>
+                </dd>
+            }
         }
         </dl>
         </div>
