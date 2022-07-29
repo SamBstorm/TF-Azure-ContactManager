@@ -14,6 +14,7 @@ namespace ASP.ContactManager.Handlers
                 FirstName = entity.FirstName,
                 Phone = entity.Phone,
                 Email = entity.Email,
+                BirthDate = entity.BirthDate,
                 CategoryId = entity.CategoryId
             };
         }
@@ -27,6 +28,7 @@ namespace ASP.ContactManager.Handlers
                 FirstName = entity.FirstName,
                 Phone = entity.Phone,
                 Email = entity.Email,
+                BirthDate = entity.BirthDate,
                 CategoryId = entity.CategoryId
             };
         }

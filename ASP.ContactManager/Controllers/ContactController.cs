@@ -63,7 +63,7 @@ namespace ASP.ContactManager.Controllers
                 }
                 newContact.UserId = 1;
                 _contacts.Add(newContact);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), new { id = newContact.Id });
             }
             catch
             {
@@ -100,13 +100,14 @@ namespace ASP.ContactManager.Controllers
                 c.FirstName = form.FirstName;
                 c.Email = form.Email;
                 c.Phone = form.Phone;
+                c.BirthDate = form.BirthDate;
                 c.CategoryId = form.CategoryId;
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), new { id = id });
             }
             catch
             {
                 form.Categories = _categories;
-                return View();
+                return View(form);
             }
         }
 
