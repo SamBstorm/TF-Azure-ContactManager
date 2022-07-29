@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace ASP.ContactManager.Models
+namespace ASP.ContactManager.Models.ViewModels
 {
     public class ContactDetails
     {
+        [ScaffoldColumn(false)]
+        [DisplayName("Identitfiant")]
+        public int Id { get; set; }
         [DisplayName("Nom de famille")]
         public string LastName { get; set; }
         [DisplayName("Prénom")]
@@ -21,16 +24,20 @@ namespace ASP.ContactManager.Models
         [DisplayName("Catégorie")]
         public int CategoryId { get; set; }
         [DisplayName("Jours avant anniversaire")]
-        public int? DaysUntilBirthDay { get {
-                if (this.BirthDate is null) return null;
+        public int? DaysUntilBirthDay
+        {
+            get
+            {
+                if (BirthDate is null) return null;
                 else
                 {
-                    DateTime bd = (DateTime)this.BirthDate;
+                    DateTime bd = (DateTime)BirthDate;
                     DateTime NextBD = new DateTime(DateTime.Now.Year, bd.Month, bd.Day);
                     if (NextBD < DateTime.Now) NextBD = NextBD.AddYears(1);
                     return (NextBD - DateTime.Now).Days;
                 }
-            } }
+            }
+        }
 
         public ContactDetails(string lastName, string firstName, int categoryId, string? email = null, string? phone = null, DateTime? birthDate = null)
         {
@@ -42,7 +49,10 @@ namespace ASP.ContactManager.Models
             CategoryId = categoryId;
         }
 
+        public ContactDetails()
+        {
 
+        }
 
     }
 }

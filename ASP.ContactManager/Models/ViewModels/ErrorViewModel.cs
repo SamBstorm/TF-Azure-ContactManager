@@ -1,4 +1,4 @@
-namespace ASP.ContactManager.Models
+namespace ASP.ContactManager.Models.ViewModels
 {
     public class ErrorViewModel
     {

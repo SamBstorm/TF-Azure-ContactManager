@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace ASP.ContactManager.Models
+namespace ASP.ContactManager.Models.ViewModels
 {
     public class AuthLoginForm
     {
         [DisplayName("Courriel :")]
-        [Required(ErrorMessage ="L'e-mail est obligatoire.")]
-        [EmailAddress(ErrorMessage ="Ne correspond pas à une adresse e-mail.")]
-        [StringLength(384, MinimumLength = 5,ErrorMessage ="L'adresse e-mail doit avoir une taille comprise entre 5 à 384 caractères.")]
+        [Required(ErrorMessage = "L'e-mail est obligatoire.")]
+        [EmailAddress(ErrorMessage = "Ne correspond pas à une adresse e-mail.")]
+        [StringLength(384, MinimumLength = 5, ErrorMessage = "L'adresse e-mail doit avoir une taille comprise entre 5 à 384 caractères.")]
         [DataType(DataType.EmailAddress)]
         public string? Email { get; set; }
         [DisplayName("Mot de passe :")]

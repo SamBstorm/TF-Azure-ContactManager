@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace ASP.ContactManager.Models
+namespace ASP.ContactManager.Models.ViewModels
 {
-    public class ContactCreateForm
+    public class ContactCreateForm : INeedPhoneOrMail
     {
         [DisplayName("Nom de famille :")]
         [Required(ErrorMessage = "Le nom de famille est obligatoire.")]
@@ -30,6 +30,6 @@ namespace ASP.ContactManager.Models
         public int CategoryId { get; set; }
 
         //Cette propriété est nécessaire, seulement pour de l'affichage...
-        public IEnumerable<KeyValuePair<string,int>> Categories { get; set; }
+        public IEnumerable<KeyValuePair<int, string>>? Categories { get; set; }
     }
 }

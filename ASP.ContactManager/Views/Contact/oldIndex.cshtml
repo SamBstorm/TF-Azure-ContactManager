@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContactManager - Contact List</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <nav>
+        <ul class="nav justify-content-center">
+            <li class="nav-item">
+                <a class="nav-link" href="/">
+                    <div>Home</div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/Privacy">
+                    <div>Privacy</div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Auth/Login">
+                    <div>Login</div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Auth/Register">
+                    <div>Register</div>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Contact/Index">
+                    <div>Contact list</div>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        @*<a class="link" href="/Contact/Create">Ajouter nouveau contact</a>*@
+        @Html.ActionLink("Ajouter nouveau contact","Create","Contact", htmlAttributes: new {@class="btn btn-primary", id="btnNouveauContact", target="_blank"})
+    </div>
+</body>
+</html>

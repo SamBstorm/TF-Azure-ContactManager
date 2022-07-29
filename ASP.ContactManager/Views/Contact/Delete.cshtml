@@ -1,45 +1,16 @@
+﻿@model ContactDelete
+
 @{
-    Layout = "";
+    ViewData["Title"] = "Delete";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ContactManager - Delete Contact</title>
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
-    <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <nav>
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" href="/">
-                    <div>Home</div>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Home/Privacy">
-                    <div>Privacy</div>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Auth/Login">
-                    <div>Login</div>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Auth/Register">
-                    <div>Register</div>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Contact/Index">
-                    <div>Contact list</div>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</body>
-</html>
+
+<h1>Suppression de contact</h1>
+
+<h3>Êtes-vous sûr de vouloir supprimer @Model.FirstName @Model.LastName.ToUpper()</h3>
+    
+    <form asp-action="Delete">
+        <div class="form-group btn-group">
+            <input type="submit" value="🗑" class="btn btn-outline-danger" />
+            <a asp-action="Index" class="btn btn-outline-warning">⬅Revenir à la liste</a>
+        </div>
+    </form>
