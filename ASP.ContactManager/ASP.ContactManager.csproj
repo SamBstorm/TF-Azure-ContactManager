@@ -10,4 +10,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BLL.ContactManager\BLL.ContactManager.csproj" />
+    <ProjectReference Include="..\Common.ContactManager\Common.ContactManager.csproj" />
+    <ProjectReference Include="..\DAL-Fake.ContactManager\DAL-Fake.ContactManager.csproj" />
+  </ItemGroup>
+
 </Project>

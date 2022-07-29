@@ -1,6 +1,7 @@
 ﻿using ASP.ContactManager.Handlers;
 using ASP.ContactManager.Models;
 using ASP.ContactManager.Models.ViewModels;
+using BLL.ContactManager.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -9,27 +10,36 @@ namespace ASP.ContactManager.Controllers
 {
     public class ContactController : Controller
     {
-        private static List<Contact> _contacts = new List<Contact>();
-        private Dictionary<int, string> _categories = new Dictionary<int, string>();
+        //private static List<Contact> _contacts = new List<Contact>();
+        //private Dictionary<int, string> _categories = new Dictionary<int, string>();
 
-        public ContactController()
+        //public ContactController()
+        //{
+        //    _categories.Add( 1, "Personnel");
+        //    _categories.Add( 2, "Professionel");
+        //}
+
+        private readonly IContactRepository _repository;
+        private readonly ICategoryRepository _catRepository;
+
+        public ContactController(IContactRepository repository, ICategoryRepository catRepository)
         {
-            _categories.Add( 1, "Personnel");
-            _categories.Add( 2, "Professionel");
+            this._repository = repository;
+            this._catRepository = catRepository;
         }
 
         // GET: ContactController
         public ActionResult Index()
         {
-            ViewData["cats"] = _categories;
-            IEnumerable<IGrouping<int,ContactListItem>> model = _contacts.Select(c => c.ToListItem()).GroupBy(c => c.CategoryId);
+            ViewData["cats"] = _catRepository.Get().ToCategoryViewDictionary();
+            IEnumerable<IGrouping<int,ContactListItem>> model = _repository.Get().Select(c => c.ToListItem()).GroupBy(c => c.CategoryId);
             return View(model);
         }
 
         // GET: ContactController/Details/5
         public ActionResult Details(int id)
         {
-            ContactDetails model = _contacts.SingleOrDefault(c => c.Id == id).ToDetails();
+            ContactDetails model = _repository.Get(id).ToDetails();
             //ContactDetails model = new ContactDetails("Legrain","Samuel",1,"samuel.legrain@bstorm.be", "+3280033800",new DateTime(1987,9,27));
             //ContactDetails model = new ContactDetails("Legrain", "Samuel", 1,null, "+3280033800");
             return View(model);
@@ -39,7 +49,7 @@ namespace ASP.ContactManager.Controllers
         public ActionResult Create()
         {
             ContactCreateForm model = new ContactCreateForm();
-            model.Categories = _categories;
+            model.Categories = _catRepository.Get().ToCategoryViewDictionary();
             return View(model);
         }
 
@@ -52,22 +62,12 @@ namespace ASP.ContactManager.Controllers
             {
                 ValidateContactCreateForm(form, ModelState);
                 if (!ModelState.IsValid) throw new Exception("ModelState invalide");
-                Contact newContact = form.ToContact();
-                try
-                {
-                    newContact.Id = _contacts.Max(c => c.Id) + 1;
-                }
-                catch
-                {
-                    newContact.Id = 1;
-                }
-                newContact.UserId = 1;
-                _contacts.Add(newContact);
-                return RedirectToAction(nameof(Details), new { id = newContact.Id });
+                int id = _repository.Insert(form.ToContact());                
+                return RedirectToAction(nameof(Details), new { id = id });
             }
             catch
             {
-                form.Categories = _categories;
+                form.Categories = _catRepository.Get().ToCategoryViewDictionary();
                 return View(form);
             }
         }
@@ -81,8 +81,8 @@ namespace ASP.ContactManager.Controllers
         // GET: ContactController/Edit/5
         public ActionResult Edit(int id)
         {
-            ContactEditForm model = _contacts.SingleOrDefault(c => c.Id == id).ToEdit();
-            model.Categories = _categories;
+            ContactEditForm model = _repository.Get(id).ToEdit();
+            model.Categories = _catRepository.Get().ToCategoryViewDictionary();
             return View(model);
         }
 
@@ -95,18 +95,12 @@ namespace ASP.ContactManager.Controllers
             {
                 ValidateContactCreateForm(form, ModelState);
                 if (!ModelState.IsValid) throw new Exception("ModelState invalide");
-                Contact c = _contacts.SingleOrDefault(c => c.Id == id);
-                c.LastName = form.LastName;
-                c.FirstName = form.FirstName;
-                c.Email = form.Email;
-                c.Phone = form.Phone;
-                c.BirthDate = form.BirthDate;
-                c.CategoryId = form.CategoryId;
+                _repository.Update(id, form.ToContact());
                 return RedirectToAction(nameof(Details), new { id = id });
             }
             catch
             {
-                form.Categories = _categories;
+                form.Categories = _catRepository.Get().ToCategoryViewDictionary();
                 return View(form);
             }
         }
@@ -114,7 +108,7 @@ namespace ASP.ContactManager.Controllers
         // GET: ContactController/Delete/5
         public ActionResult Delete(int id)
         {
-            ContactDelete model = _contacts.SingleOrDefault(c => c.Id == id).ToDelete();
+            ContactDelete model = _repository.Get(id).ToDelete();
             return View(model);
         }
 
@@ -125,8 +119,7 @@ namespace ASP.ContactManager.Controllers
         {
             try
             {
-                Contact c = _contacts.SingleOrDefault(c => c.Id == id);
-                _contacts.Remove(c);
+                _repository.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch

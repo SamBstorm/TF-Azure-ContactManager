@@ -1,4 +1,4 @@
-﻿using ASP.ContactManager.Models;
+﻿using BLL.ContactManager.Entities;
 using ASP.ContactManager.Models.ViewModels;
 
 namespace ASP.ContactManager.Handlers
@@ -15,7 +15,7 @@ namespace ASP.ContactManager.Handlers
                 Phone = entity.Phone,
                 Email = entity.Email,
                 BirthDate = entity.BirthDate,
-                CategoryId = entity.CategoryId
+                CategoryId = entity.Category.Id
             };
         }
 
@@ -29,7 +29,7 @@ namespace ASP.ContactManager.Handlers
                 Phone = entity.Phone,
                 Email = entity.Email,
                 BirthDate = entity.BirthDate,
-                CategoryId = entity.CategoryId
+                CategoryId = entity.Category.Id
             };
         }
 
@@ -51,7 +51,7 @@ namespace ASP.ContactManager.Handlers
                 Id = entity.Id,
                 LastName = entity.LastName,
                 FirstName = entity.FirstName,
-                CategoryId = entity.CategoryId
+                CategoryId = entity.Category.Id
             };
         }
 
@@ -65,7 +65,8 @@ namespace ASP.ContactManager.Handlers
                 Phone = entity.Phone,
                 Email = entity.Email,
                 BirthDate = entity.BirthDate,
-                CategoryId = entity.CategoryId
+                UserId = 1, //A remplacer par le numéro de l'utilisateur connecté en session
+                Category = new Category() { Id = entity.CategoryId }
             };
         }
         public static Contact ToContact(this ContactEditForm entity)
@@ -78,8 +79,19 @@ namespace ASP.ContactManager.Handlers
                 Phone = entity.Phone,
                 Email = entity.Email,
                 BirthDate = entity.BirthDate,
-                CategoryId = entity.CategoryId
+                Category = new Category() { Id = entity.CategoryId }
             };
+        }
+
+        public static Dictionary<int, string> ToCategoryViewDictionary(this IEnumerable<Category> entities)
+        {
+            if (entities == null) return null;
+            Dictionary<int, string> result = new Dictionary<int, string>();
+            foreach (Category category in entities)
+            {
+                result.Add(category.Id, category.Name);
+            }
+            return result;
         }
     }
 }
