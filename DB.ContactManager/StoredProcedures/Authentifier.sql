@@ -6,7 +6,7 @@ AS
 			[Nom],
 			[Prenom],
 			[Email],
-			'********'
+			'********' AS [Password]
 	FROM [Utilisateur]
 	WHERE [Email] LIKE @email
 		AND [Password] = HASHBYTES('SHA2_512',@password)
