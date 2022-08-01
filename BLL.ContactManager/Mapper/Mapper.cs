@@ -1,5 +1,5 @@
 ﻿using B = BLL.ContactManager.Entities;
-using D = DAL_Fake.ContactManager.Entities;
+using D = DAL.ContactManager.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,15 +20,8 @@ namespace BLL.ContactManager.Mapper
         public static B.Contact ToBLL(this D.Contact entity)
         {
             if (entity == null) return null;
-            return new B.Contact()
-            {
-                Id = entity.Id,
-                LastName = entity.Nom,
-                FirstName = entity.Prenom,
-                Email = entity.Email,
-                Phone = entity.Tel,
-                BirthDate = entity.Anniversaire,
-                UserId = entity.UtilisateurId,
+            return new B.Contact(entity.Id,entity.Nom,entity.Prenom,entity.Email,entity.Tel,entity.Anniversaire)
+            {   UserId = entity.UtilisateurId,
                 Category = null
             };
         }

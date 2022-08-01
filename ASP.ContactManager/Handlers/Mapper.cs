@@ -58,13 +58,8 @@ namespace ASP.ContactManager.Handlers
         public static Contact ToContact(this ContactCreateForm entity)
         {
             if (entity == null) return null;
-            return new Contact()
+            return new Contact(default,entity.LastName,entity.FirstName,entity.Email,entity.Phone,entity.BirthDate)
             {
-                LastName = entity.LastName,
-                FirstName = entity.FirstName,
-                Phone = entity.Phone,
-                Email = entity.Email,
-                BirthDate = entity.BirthDate,
                 UserId = 1, //A remplacer par le numéro de l'utilisateur connecté en session
                 Category = new Category() { Id = entity.CategoryId }
             };
@@ -72,13 +67,9 @@ namespace ASP.ContactManager.Handlers
         public static Contact ToContact(this ContactEditForm entity)
         {
             if (entity == null) return null;
-            return new Contact()
+            return new Contact(default,entity.LastName,entity.FirstName,entity.Email,entity.Phone,entity.BirthDate)
             {
-                LastName = entity.LastName,
-                FirstName = entity.FirstName,
-                Phone = entity.Phone,
-                Email = entity.Email,
-                BirthDate = entity.BirthDate,
+                UserId = 1, //A remplacer par le numéro de l'utilisateur connecté en session
                 Category = new Category() { Id = entity.CategoryId }
             };
         }

@@ -1,5 +1,6 @@
 ﻿using BLL.ContactManager.Entities;
 using BLL.ContactManager.Mapper;
+using D = DAL.ContactManager.Entities;
 using Common.ContactManager.Services;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ namespace BLL.ContactManager.Services
 {
     public class CategoryService : ICategoryRepository<Category>
     {
-        private readonly ICategoryRepository<DAL_Fake.ContactManager.Entities.Categorie> _repository;
+        private readonly ICategoryRepository<D.Categorie> _repository;
 
-        public CategoryService(ICategoryRepository<DAL_Fake.ContactManager.Entities.Categorie> repository)
+        public CategoryService(ICategoryRepository<D.Categorie> repository)
         {
             this._repository = repository;
         }

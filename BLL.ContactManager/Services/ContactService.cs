@@ -1,21 +1,20 @@
 ﻿using BLL.ContactManager.Entities;
 using BLL.ContactManager.Mapper;
-using Common.ContactManager.Entities;
 using Common.ContactManager.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DAL = DAL_Fake.ContactManager.Entities;
+using D = DAL.ContactManager.Entities;
 
 namespace BLL.ContactManager.Services
 {
     public class ContactService : IContactRepository<Contact>
     {
-        private readonly IContactRepository<DAL.Contact> _repository;
+        private readonly IContactRepository<D.Contact> _repository;
         private readonly ICategoryRepository<Category> _catRepository;
 
-        public ContactService(IContactRepository<DAL.Contact> repository, ICategoryRepository<Category> catRepository)
+        public ContactService(IContactRepository<D.Contact> repository, ICategoryRepository<Category> catRepository)
         {
             _repository = repository;
             _catRepository = catRepository;

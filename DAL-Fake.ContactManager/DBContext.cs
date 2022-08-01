@@ -1,5 +1,4 @@
-﻿using Common.ContactManager.Entities;
-using DAL_Fake.ContactManager.Entities;
+﻿using DAL_Fake.ContactManager.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

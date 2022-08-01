@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common.ContactManager\Common.ContactManager.csproj" />
-    <ProjectReference Include="..\DAL-Fake.ContactManager\DAL-Fake.ContactManager.csproj" />
+    <ProjectReference Include="..\DAL.ContactManager\DAL.ContactManager.csproj" />
   </ItemGroup>
 
 </Project>

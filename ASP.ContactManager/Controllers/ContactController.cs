@@ -1,10 +1,9 @@
 ﻿using ASP.ContactManager.Handlers;
-using ASP.ContactManager.Models;
 using ASP.ContactManager.Models.ViewModels;
-using BLL.ContactManager.Services;
-using Microsoft.AspNetCore.Http;
+using Common.ContactManager.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using B = BLL.ContactManager.Entities;
 
 namespace ASP.ContactManager.Controllers
 {
@@ -19,10 +18,10 @@ namespace ASP.ContactManager.Controllers
         //    _categories.Add( 2, "Professionel");
         //}
 
-        private readonly IContactRepository _repository;
-        private readonly ICategoryRepository _catRepository;
+        private readonly IContactRepository<B.Contact> _repository;
+        private readonly ICategoryRepository<B.Category> _catRepository;
 
-        public ContactController(IContactRepository repository, ICategoryRepository catRepository)
+        public ContactController(IContactRepository<B.Contact> repository, ICategoryRepository<B.Category> catRepository)
         {
             this._repository = repository;
             this._catRepository = catRepository;

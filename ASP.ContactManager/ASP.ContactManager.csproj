@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,12 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BLL.ContactManager\BLL.ContactManager.csproj" />
     <ProjectReference Include="..\Common.ContactManager\Common.ContactManager.csproj" />
-    <ProjectReference Include="..\DAL-Fake.ContactManager\DAL-Fake.ContactManager.csproj" />
+    <ProjectReference Include="..\DAL.ContactManager\DAL.ContactManager.csproj" />
   </ItemGroup>
 
 </Project>

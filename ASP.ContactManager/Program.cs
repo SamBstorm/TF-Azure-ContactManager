@@ -1,13 +1,12 @@
-using D = DAL_Fake.ContactManager;
+using D = DAL.ContactManager;
 using B = BLL.ContactManager;
-using Common.ContactManager.Entities;
 using Common.ContactManager.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<ICategoryRepository<D.Entities.Categorie>, D.Services.CategoryService>();
+builder.Services.AddScoped<ICategoryRepository<D.Entities.Categorie>, D.Services.CategorieService>();
 builder.Services.AddScoped<ICategoryRepository<B.Entities.Category>, B.Services.CategoryService>();
 builder.Services.AddScoped<IContactRepository<D.Entities.Contact>, D.Services.ContactService>();
 builder.Services.AddScoped<IContactRepository<B.Entities.Contact>, B.Services.ContactService>();

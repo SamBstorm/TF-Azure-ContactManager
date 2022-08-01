@@ -15,13 +15,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{D7EFC3B3-45D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{E8820634-CCE4-4439-829D-8A976340658B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL-Fake.ContactManager", "DAL-Fake.ContactManager\DAL-Fake.ContactManager.csproj", "{DE360F29-85A8-4EFC-BFC4-FEDE0C8B8D1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL-Fake.ContactManager", "DAL-Fake.ContactManager\DAL-Fake.ContactManager.csproj", "{DE360F29-85A8-4EFC-BFC4-FEDE0C8B8D1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL.ContactManager", "BLL.ContactManager\BLL.ContactManager.csproj", "{82218CBA-28B9-457D-8081-40482309FB5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL.ContactManager", "BLL.ContactManager\BLL.ContactManager.csproj", "{82218CBA-28B9-457D-8081-40482309FB5A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "COMMON", "COMMON", "{ECB29EC0-3FE9-40BF-91FA-9669738177A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.ContactManager", "Common.ContactManager\Common.ContactManager.csproj", "{86998E27-2B39-4D0D-87C4-BFF2035B1409}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.ContactManager", "Common.ContactManager\Common.ContactManager.csproj", "{86998E27-2B39-4D0D-87C4-BFF2035B1409}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.ContactManager", "DAL.ContactManager\DAL.ContactManager.csproj", "{D73BD86B-81A0-45B7-B512-6926BF74CCEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{86998E27-2B39-4D0D-87C4-BFF2035B1409}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86998E27-2B39-4D0D-87C4-BFF2035B1409}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86998E27-2B39-4D0D-87C4-BFF2035B1409}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D73BD86B-81A0-45B7-B512-6926BF74CCEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D73BD86B-81A0-45B7-B512-6926BF74CCEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D73BD86B-81A0-45B7-B512-6926BF74CCEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D73BD86B-81A0-45B7-B512-6926BF74CCEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,6 +67,7 @@ Global
 		{DE360F29-85A8-4EFC-BFC4-FEDE0C8B8D1F} = {D7EFC3B3-45DC-415F-9B10-D1E1456242D5}
 		{82218CBA-28B9-457D-8081-40482309FB5A} = {E8820634-CCE4-4439-829D-8A976340658B}
 		{86998E27-2B39-4D0D-87C4-BFF2035B1409} = {ECB29EC0-3FE9-40BF-91FA-9669738177A3}
+		{D73BD86B-81A0-45B7-B512-6926BF74CCEF} = {D7EFC3B3-45DC-415F-9B10-D1E1456242D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B7DC614F-12CD-44AC-B8F0-EEA00C5E502D}
