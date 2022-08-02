@@ -60,7 +60,7 @@ namespace ASP.ContactManager.Handlers
             if (entity == null) return null;
             return new Contact(default,entity.LastName,entity.FirstName,entity.Email,entity.Phone,entity.BirthDate)
             {
-                UserId = 1, //A remplacer par le numéro de l'utilisateur connecté en session
+                User = new User() { Id = 1 }, //A remplacer par le numéro de l'utilisateur connecté en session
                 Category = new Category() { Id = entity.CategoryId }
             };
         }
@@ -69,7 +69,7 @@ namespace ASP.ContactManager.Handlers
             if (entity == null) return null;
             return new Contact(default,entity.LastName,entity.FirstName,entity.Email,entity.Phone,entity.BirthDate)
             {
-                UserId = 1, //A remplacer par le numéro de l'utilisateur connecté en session
+                User = new User() { Id = 1 }, //A remplacer par le numéro de l'utilisateur connecté en session
                 Category = new Category() { Id = entity.CategoryId }
             };
         }
@@ -83,6 +83,18 @@ namespace ASP.ContactManager.Handlers
                 result.Add(category.Id, category.Name);
             }
             return result;
+        }
+
+        public static User ToBLL(this AuthRegisterForm entity)
+        {
+            if (entity == null) return null;
+            return new User()
+            {
+                LastName = entity.LastName,
+                FirstName = entity.FirstName,
+                Email = entity.Email,
+                Password = entity.Password
+            };
         }
     }
 }

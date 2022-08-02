@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ICategoryRepository<D.Entities.Categorie>, D.Services.CategorieService>();
 builder.Services.AddScoped<ICategoryRepository<B.Entities.Category>, B.Services.CategoryService>();
+builder.Services.AddScoped<IUserRepository<D.Entities.Utilisateur>, D.Services.UtilisateurService>();
+builder.Services.AddScoped<IUserRepository<B.Entities.User>, B.Services.UserService>();
 builder.Services.AddScoped<IContactRepository<D.Entities.Contact>, D.Services.ContactService>();
 builder.Services.AddScoped<IContactRepository<B.Entities.Contact>, B.Services.ContactService>();
 

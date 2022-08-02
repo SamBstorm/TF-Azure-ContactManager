@@ -12,7 +12,7 @@ namespace BLL.ContactManager.Entities
         private string? _email { get; set; }
         private string? _phone { get; set; }
         public DateTime? BirthDate { get; set; }
-        public int UserId { get; set; }
+        public User User { get; set; }
         public Category Category { get; set; }
         public string? Email 
         {

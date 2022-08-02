@@ -21,7 +21,8 @@ namespace BLL.ContactManager.Mapper
         {
             if (entity == null) return null;
             return new B.Contact(entity.Id,entity.Nom,entity.Prenom,entity.Email,entity.Tel,entity.Anniversaire)
-            {   UserId = entity.UtilisateurId,
+            {   
+                User = null,
                 Category = null
             };
         }
@@ -36,8 +37,32 @@ namespace BLL.ContactManager.Mapper
                 Email = entity.Email,
                 Tel = entity.Phone,
                 Anniversaire = entity.BirthDate,
-                UtilisateurId = entity.UserId,
+                UtilisateurId = entity.User.Id,
                 CategorieId = entity.Category.Id
+            };
+        }
+        public static B.User ToBLL(this D.Utilisateur entity)
+        {
+            if (entity == null) return null;
+            return new B.User()
+            {
+                Id = entity.Id,
+                LastName = entity.Nom,
+                FirstName = entity.Prenom,
+                Email = entity.Email,
+                Password = entity.Password
+            };
+        }
+        public static D.Utilisateur ToDAL(this B.User entity)
+        {
+            if (entity == null) return null;
+            return new D.Utilisateur()
+            {
+                Id = entity.Id,
+                Nom = entity.LastName,
+                Prenom = entity.FirstName,
+                Email = entity.Email,
+                Password = entity.Password
             };
         }
     }

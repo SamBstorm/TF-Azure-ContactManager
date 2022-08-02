@@ -32,5 +32,18 @@ namespace DAL.ContactManager.Mapper
                 UtilisateurId = (int)reader[nameof(Contact.UtilisateurId)]
             };
         }
+
+        public static Utilisateur convertUtilisateur(IDataRecord reader)
+        {
+            if (reader == null) return null;
+            return new Utilisateur()
+            {
+                Id = (int)reader[nameof(Utilisateur.Id)],
+                Nom = (string)reader[nameof(Utilisateur.Nom)],
+                Prenom = (string)reader[nameof(Utilisateur.Prenom)],
+                Email = (string)reader[nameof(Utilisateur.Email)],
+                Password = (string)reader[nameof(Utilisateur.Password)]
+            };
+        }
     }
 }

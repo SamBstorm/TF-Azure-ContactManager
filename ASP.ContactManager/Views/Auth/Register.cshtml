@@ -1,68 +1,53 @@
+﻿@model ASP.ContactManager.Models.ViewModels.AuthRegisterForm
+
 @{
-    Layout = "";
+    ViewData["Title"] = "Register";
 }
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ContactManager - Register</title>
-    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css">
-    <script src="/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <nav>
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" href="/">
-                    <div>Home</div>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Home/Privacy">
-                    <div>Privacy</div>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Auth/Login">
-                    <div>Login</div>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Auth/Register">
-                    <div>Register</div>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/Contact/Index">
-                    <div>Contact list</div>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <div class="container">
-        <form method="post">
+
+<h1>Nouvel utilisateur</h1>
+
+<h4>Complétez le formulaire pour ajouter un nouvel utilisateur</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label for="lastname">Nom : </label>
-                <input class="form-control" id="lastname" type="text"></div>
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
             <div class="form-group">
-                <label for="firstname">Prénom : </label>
-                <input class="form-control" id="firstname" type="text"></div>
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
             <div class="form-group">
-                <label for="email">Email : </label>
-                <input class="form-control" id="email" type="email"></div>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
             <div class="form-group">
-                <label for="password">Mot de passe : </label>
-                <input class="form-control" id="password" type="password"></div>
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
             <div class="form-group">
-                <label for="scnd_password">Confirmer le mot de passe : </label>
-                <input class="form-control" id="scnd_password" type="password"></div>
-            <div class="btn-group">
-                <input class="btn btn-primary" type="submit" value="S'enregistrer">
-                <input class="btn btn-secondary" type="reset" value="Annuler">
+                <label asp-for="ScdPassword" class="control-label"></label>
+                <input asp-for="ScdPassword" class="form-control" />
+                <span asp-validation-for="ScdPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Enregistrer" class="btn btn-outline-primary" />
             </div>
         </form>
     </div>
-</body>
-</html>
+</div>
+
+<div>
+    <a class="btn btn-outline-warning" asp-action="Index">Se connecter</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

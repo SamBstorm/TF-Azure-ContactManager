@@ -13,11 +13,16 @@ namespace BLL.ContactManager.Services
     {
         private readonly IContactRepository<D.Contact> _repository;
         private readonly ICategoryRepository<Category> _catRepository;
+        private readonly IUserRepository<User> _userRepository;
 
-        public ContactService(IContactRepository<D.Contact> repository, ICategoryRepository<Category> catRepository)
+        public ContactService(
+            IContactRepository<D.Contact> repository,
+            ICategoryRepository<Category> catRepository,
+            IUserRepository<User> userRepository)
         {
             _repository = repository;
             _catRepository = catRepository;
+            _userRepository = userRepository;
         }
 
         public bool Delete(int id)
@@ -31,6 +36,7 @@ namespace BLL.ContactManager.Services
             result = result.Select(c =>
             {
                 c.Category = _catRepository.GetByContact(c.Id);
+                c.User = _userRepository.GetByContact(c.Id);
                 return c;
             });
             return result;
@@ -40,6 +46,7 @@ namespace BLL.ContactManager.Services
         {
             Contact result = _repository.Get(id).ToBLL();
             result.Category = _catRepository.GetByContact(id);
+            result.User = _userRepository.GetByContact(id);
             return result;
         }
 

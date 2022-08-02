@@ -1,4 +1,7 @@
-﻿using ASP.ContactManager.Models.ViewModels;
+﻿using ASP.ContactManager.Handlers;
+using ASP.ContactManager.Models.ViewModels;
+using BLL.ContactManager.Entities;
+using Common.ContactManager.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Text.RegularExpressions;
@@ -7,6 +10,13 @@ namespace ASP.ContactManager.Controllers
 {
     public class AuthController : Controller
     {
+        private readonly IUserRepository<User> _repository;
+
+        public AuthController(IUserRepository<User> repository)
+        {
+            _repository = repository;
+        }
+
         public IActionResult Index()
         {
             return RedirectToAction("login");
@@ -26,10 +36,19 @@ namespace ASP.ContactManager.Controllers
         //Login(string email, string password) récupère chacun des input dans des paramètres distincts
         public IActionResult Login(AuthLoginForm form)
         {
-            //ValidateAuthLoginForm(form, ModelState);
-            //GodMode(form, ModelState);
-            if (ModelState.IsValid) return RedirectToAction("Index", "Home");
-            return View();
+            try
+            {
+                //ValidateAuthLoginForm(form, ModelState);
+                //GodMode(form, ModelState);
+                if (!ModelState.IsValid) throw new Exception("ModelState invalide");
+                User user = _repository.CheckUser(form.Email, form.Password);
+                if( user == null ) throw new Exception("Utilisateur invalide");
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
 
         private void ValidateAuthLoginForm(AuthLoginForm form, ModelStateDictionary modelState)
@@ -55,9 +74,19 @@ namespace ASP.ContactManager.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(IFormCollection form)
+        public IActionResult Register(AuthRegisterForm form)
         {
-            return View();
+
+            try
+            {
+                if (!ModelState.IsValid) throw new Exception("ModelState invalide");
+                _repository.Insert(form.ToBLL());
+                return RedirectToAction("Index", "Auth");
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
     }
 }
