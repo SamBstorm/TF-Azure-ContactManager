@@ -1,4 +1,5 @@
 ﻿using ASP.ContactManager.Handlers;
+using ASP.ContactManager.Handlers.Exceptions;
 using ASP.ContactManager.Models.ViewModels;
 using BLL.ContactManager.Entities;
 using Common.ContactManager.Services;
@@ -42,8 +43,13 @@ namespace ASP.ContactManager.Controllers
                 //GodMode(form, ModelState);
                 if (!ModelState.IsValid) throw new Exception("ModelState invalide");
                 User user = _repository.CheckUser(form.Email, form.Password);
-                if( user == null ) throw new Exception("Utilisateur invalide");
+                if( user == null ) throw new BadLoginException();
                 return RedirectToAction("Index", "Home");
+            }
+            catch (BadLoginException e)
+            {
+                ViewData["errorMessage"] = e.Message;
+                return View();
             }
             catch (Exception)
             {

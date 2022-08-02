@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Common.ContactManager.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BLL.ContactManager.Entities
 {
-    public class User
+    public class User : IUser
     {
         public int Id { get; set; }
         public string LastName { get; set; }

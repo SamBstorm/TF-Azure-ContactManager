@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Common.ContactManager.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DAL.ContactManager.Entities
 {
-    public class Utilisateur
+    public class Utilisateur : IUser
     {
         public int Id { get; set; }
         public string Nom { get; set; }
