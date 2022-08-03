@@ -18,6 +18,7 @@ namespace ASP.ContactManager.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation("Bienvenu sur Index!");
             _session.nbVue++;
             return View();
         }

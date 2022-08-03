@@ -31,6 +31,14 @@ namespace DAL.ContactManager.Services
             return con.ExecuteReader<Contact>(com,convertContact);
         }
 
+        public IEnumerable<Contact> GetByUser(int userId)
+        {
+            Connection con = new Connection(InvariantName, ConnectionString);
+            Command com = new Command("SELECT * FROM Contact WHERE UtilisateurId = @id");
+            com.AddParameter("id", userId);
+            return con.ExecuteReader<Contact>(com, convertContact);
+        }
+
         public Contact Get(int id)
         {
 

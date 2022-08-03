@@ -3,6 +3,7 @@ using ASP.ContactManager.Handlers.Exceptions;
 using ASP.ContactManager.Models.ViewModels;
 using BLL.ContactManager.Entities;
 using Common.ContactManager.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Text.RegularExpressions;
@@ -12,10 +13,12 @@ namespace ASP.ContactManager.Controllers
     public class AuthController : Controller
     {
         private readonly IUserRepository<User> _repository;
+        private readonly SessionManager _session;
 
-        public AuthController(IUserRepository<User> repository)
+        public AuthController(IUserRepository<User> repository, SessionManager session)
         {
             _repository = repository;
+            this._session = session;
         }
 
         public IActionResult Index()
@@ -44,7 +47,8 @@ namespace ASP.ContactManager.Controllers
                 if (!ModelState.IsValid) throw new Exception("ModelState invalide");
                 User user = _repository.CheckUser(form.Email, form.Password);
                 if( user == null ) throw new BadLoginException();
-                return RedirectToAction("Index", "Home");
+                _session.CurrentUser = user;
+                return RedirectToAction("Index", "Contact");
             }
             catch (BadLoginException e)
             {
@@ -93,6 +97,18 @@ namespace ASP.ContactManager.Controllers
             {
                 return View();
             }
+        }
+
+        public IActionResult Logout()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Logout(IFormCollection form)
+        {
+            _session.CurrentUser = null;
+            return RedirectToAction("Login");
         }
     }
 }

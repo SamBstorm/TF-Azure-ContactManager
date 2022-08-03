@@ -50,6 +50,18 @@ namespace BLL.ContactManager.Services
             return result;
         }
 
+        public IEnumerable<Contact> GetByUser(int userId)
+        {
+            IEnumerable<Contact> result = _repository.GetByUser(userId).Select(c => c.ToBLL());
+            result = result.Select(c =>
+            {
+                c.Category = _catRepository.GetByContact(c.Id);
+                c.User = _userRepository.Get(userId);
+                return c;
+            });
+            return result;
+        }
+
         public int Insert(Contact newData)
         {
             return _repository.Insert(newData.ToDAL());

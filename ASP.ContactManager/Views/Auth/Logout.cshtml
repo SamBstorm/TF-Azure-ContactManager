@@ -1,0 +1,8 @@
+﻿@inject ASP.ContactManager.Handlers.SessionManager session;
+<form method="post">
+    <h2>Voulez-vous réellement vous déconnecter du compte de @session.CurrentUser.FirstName @session.CurrentUser.LastName ?</h2>
+    <div class="btn-group">
+        <input type="submit" value="Se déconnecter" class="btn btn-outline-danger"/>
+        <a asp-action="Index" asp-controller="Home" class="btn btn-outline-warning">Revenir en lieu sûr</a>
+    </div>
+</form>

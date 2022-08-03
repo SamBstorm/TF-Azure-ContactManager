@@ -60,7 +60,7 @@ namespace ASP.ContactManager.Handlers
             if (entity == null) return null;
             return new Contact(default,entity.LastName,entity.FirstName,entity.Email,entity.Phone,entity.BirthDate)
             {
-                User = new User() { Id = 1 }, //A remplacer par le numéro de l'utilisateur connecté en session
+                User = null, //A remplacer par le numéro de l'utilisateur connecté en session
                 Category = new Category() { Id = entity.CategoryId }
             };
         }
@@ -69,7 +69,7 @@ namespace ASP.ContactManager.Handlers
             if (entity == null) return null;
             return new Contact(default,entity.LastName,entity.FirstName,entity.Email,entity.Phone,entity.BirthDate)
             {
-                User = new User() { Id = 1 }, //A remplacer par le numéro de l'utilisateur connecté en session
+                User = null, //A remplacer par le numéro de l'utilisateur connecté en session
                 Category = new Category() { Id = entity.CategoryId }
             };
         }

@@ -6,5 +6,6 @@ namespace Common.ContactManager.Services
 {
     public interface IContactRepository<TContact> : IRepository<int,TContact>
     {
+        IEnumerable<TContact> GetByUser(int userId);
     }
 }

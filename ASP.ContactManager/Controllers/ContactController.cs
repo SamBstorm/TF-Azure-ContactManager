@@ -1,5 +1,6 @@
 ﻿using ASP.ContactManager.Handlers;
 using ASP.ContactManager.Models.ViewModels;
+using BLL.ContactManager.Entities;
 using Common.ContactManager.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -20,18 +21,20 @@ namespace ASP.ContactManager.Controllers
 
         private readonly IContactRepository<B.Contact> _repository;
         private readonly ICategoryRepository<B.Category> _catRepository;
+        private readonly SessionManager _session;
 
-        public ContactController(IContactRepository<B.Contact> repository, ICategoryRepository<B.Category> catRepository)
+        public ContactController(IContactRepository<B.Contact> repository, ICategoryRepository<B.Category> catRepository, SessionManager session)
         {
             this._repository = repository;
             this._catRepository = catRepository;
+            this._session = session;
         }
 
         // GET: ContactController
         public ActionResult Index()
         {
             ViewData["cats"] = _catRepository.Get().ToCategoryViewDictionary();
-            IEnumerable<IGrouping<int,ContactListItem>> model = _repository.Get().Select(c => c.ToListItem()).GroupBy(c => c.CategoryId);
+            IEnumerable<IGrouping<int,ContactListItem>> model = _repository.GetByUser(_session.CurrentUser.Id).Select(c => c.ToListItem()).GroupBy(c => c.CategoryId);
             return View(model);
         }
 
@@ -61,7 +64,9 @@ namespace ASP.ContactManager.Controllers
             {
                 ValidateContactCreateForm(form, ModelState);
                 if (!ModelState.IsValid) throw new Exception("ModelState invalide");
-                int id = _repository.Insert(form.ToContact());                
+                Contact c = form.ToContact();
+                c.User = new User() { Id = _session.CurrentUser.Id };
+                int id = _repository.Insert(c);                
                 return RedirectToAction(nameof(Details), new { id = id });
             }
             catch
@@ -94,7 +99,9 @@ namespace ASP.ContactManager.Controllers
             {
                 ValidateContactCreateForm(form, ModelState);
                 if (!ModelState.IsValid) throw new Exception("ModelState invalide");
-                _repository.Update(id, form.ToContact());
+                Contact c = form.ToContact();
+                c.User = new User() { Id = _session.CurrentUser.Id };
+                _repository.Update(id, c);
                 return RedirectToAction(nameof(Details), new { id = id });
             }
             catch

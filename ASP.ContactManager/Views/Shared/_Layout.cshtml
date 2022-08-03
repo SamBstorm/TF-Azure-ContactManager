@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@inject ASP.ContactManager.Handlers.SessionManager session;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -19,23 +20,33 @@
                                 aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
+                        @if (session.CurrentUser != null)
+                        {
+                            <p>Bonjour @session.CurrentUser.FirstName @session.CurrentUser.LastName</p>
+                        }
                         <div class="navbar-collapse collapse">
                             <ul class="navbar-nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Accueil</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">Login</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">Register</a>
-                                </li>
+                                @if (session.CurrentUser != null)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Contact" asp-action="Index">Contact</a>
+                                    </li>                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Logout">Se déconnecter</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Login">Se connecter</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-controller="Auth" asp-action="Register">S'enregistrer</a>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </div>
@@ -51,7 +62,7 @@
     </div>
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - ASP.ContactManager - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - ASP.ContactManager - <a asp-area="" asp-controller="Home" asp-action="Privacy">Informations relatifs à la vie privée.</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
