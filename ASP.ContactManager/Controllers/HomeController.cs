@@ -1,4 +1,5 @@
-﻿using ASP.ContactManager.Models.ViewModels;
+﻿using ASP.ContactManager.Handlers;
+using ASP.ContactManager.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,14 +8,17 @@ namespace ASP.ContactManager.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly SessionManager _session;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, SessionManager session)
         {
             _logger = logger;
+            _session = session;
         }
 
         public IActionResult Index()
         {
+            _session.nbVue++;
             return View();
         }
 
